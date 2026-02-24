@@ -1,311 +1,297 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Kas Kelas</title>
-  <style>
+<title>Kas Kelas</title>
+<style>
 
-  body {
-    font-family: Arial;
-    padding: 20px;
-    background: #f4f6f9;
-  }
+body{
+  font-family:Arial;
+  padding:20px;
+  background:#f4f6f9;
+}
 
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+h1{
+  text-align:center;
+  margin-bottom:20px;
+}
 
-  .table-container {
-    overflow-x: auto;
-  }
+.table-container{
+  overflow-x:auto;
+}
 
-  table {
-    border-collapse: collapse;
-    min-width: 1400px;
-    background: white;
-  }
+table{
+  border-collapse:collapse;
+  min-width:1400px;
+  background:white;
+}
 
-  th, td {
-    border: 1px solid #ddd;
-    padding: 6px;
-    text-align: center;
-    font-size: 13px;
-  }
+th,td{
+  border:1px solid #ddd;
+  padding:6px;
+  text-align:center;
+  font-size:13px;
+}
 
-  th {
-    background: #222;
-    color: white;
-  }
+th{
+  background:#222;
+  color:white;
+}
 
-  .nama {
-    text-align: left;
-    font-weight: bold;
-    min-width: 220px;
-  }
+.nama{
+  text-align:left;
+  font-weight:bold;
+  min-width:220px;
+}
 
-  /* ================= CEO ================= */
+/* ================= CEO ================= */
 
-  .CEO {
-    background: linear-gradient(
-      120deg,
-      #caa93f,
-      #e6c65c,
-      #d4b347,
-      #e6c65c,
-      #caa93f
+.CEO{
+  background:linear-gradient(120deg,#caa93f,#e6c65c,#d4b347,#e6c65c,#caa93f);
+  background-size:200% 200%;
+  animation:goldSoft 12s ease-in-out infinite;
+}
+
+@keyframes goldSoft{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* ================= TUAN ================= */
+
+.Tuan{
+  background:linear-gradient(120deg,#2f6fa3,#3f86c6,#2f6fa3,#3f86c6,#2f6fa3);
+  background-size:200% 200%;
+  animation:blueSoft 12s ease-in-out infinite;
+}
+
+@keyframes blueSoft{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* ================= NONA ================= */
+
+.Nona{
+  background:linear-gradient(120deg,#d96c9a,#f08bb5,#d96c9a,#f08bb5,#d96c9a);
+  background-size:200% 200%;
+  animation:pinkSoft 12s ease-in-out infinite;
+}
+
+@keyframes pinkSoft{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* ================= DEVELOPER LAVA ================= */
+
+.Developer{
+  position:relative;
+  background:
+    radial-gradient(circle at 30% 30%, #ff2a2a 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, #990000 0%, transparent 50%),
+    linear-gradient(135deg,#1a0000,#330000,#1a0000);
+  background-size:300% 300%;
+  animation:lavaFlow 6s ease-in-out infinite;
+  overflow:hidden;
+}
+
+@keyframes lavaFlow{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.Developer::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      60deg,
+      rgba(255,0,0,0.15) 0px,
+      rgba(255,0,0,0.15) 3px,
+      transparent 3px,
+      transparent 8px
     );
-    background-size: 200% 200%;
-    animation: goldSoft 12s ease-in-out infinite;
+  animation:lavaLines 3s linear infinite;
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+
+@keyframes lavaLines{
+  0%{transform:translateX(-15px);}
+  100%{transform:translateX(15px);}
+}
+
+/* ================= BARA API HALUS ================= */
+
+.spark{
+  position:absolute;
+  bottom:5px;
+  font-size:6px;
+  pointer-events:none;
+  animation:riseSoft linear forwards;
+  opacity:0.9;
+}
+
+@keyframes riseSoft{
+  to{
+    transform:translateY(-60px) translateX(5px);
+    opacity:0;
   }
+}
 
-  @keyframes goldSoft {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+/* ================= NAMA KHUSUS ================= */
 
-  /* ================= TUAN ================= */
+.nama.special{
+  padding:6px 12px;
+  border-radius:12px;
+  display:inline-block;
+  animation:blinkSoft 2s infinite alternate;
+  color:white;
+}
 
-  .Tuan {
-    background: linear-gradient(
-      120deg,
-      #2f6fa3,
-      #3f86c6,
-      #2f6fa3,
-      #3f86c6,
-      #2f6fa3
-    );
-    background-size: 200% 200%;
-    animation: blueSoft 12s ease-in-out infinite;
-  }
+.CEO .nama.special{
+  border:2px solid #ffd700;
+  text-shadow:0 0 6px #ffd700,0 0 12px #ffcc00,0 0 18px #ffaa00;
+}
 
-  @keyframes blueSoft {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+.Tuan .nama.special{
+  border:2px solid #6ec6ff;
+  text-shadow:0 0 6px #00cfff,0 0 12px #00aaff,0 0 18px #0088ff;
+}
 
-  /* ================= NONA ================= */
+.Nona .nama.special{
+  border:2px solid #ff9ecf;
+  text-shadow:0 0 6px #ff69b4,0 0 12px #ff85c1,0 0 18px #ffb6d9;
+}
 
-  .Nona {
-    background: linear-gradient(
-      120deg,
-      #d96c9a,
-      #f08bb5,
-      #d96c9a,
-      #f08bb5,
-      #d96c9a
-    );
-    background-size: 200% 200%;
-    animation: pinkSoft 12s ease-in-out infinite;
-  }
+.Developer .nama.special{
+  border:2px solid #ff0000;
+  text-shadow:0 0 6px #ff0000,0 0 12px #ff1a1a,0 0 20px #990000;
+}
 
-  @keyframes pinkSoft {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+@keyframes blinkSoft{
+  from{filter:brightness(1);}
+  to{filter:brightness(1.4);}
+}
 
-  /* ================= PARTICLE ================= */
+.badge{
+  padding:4px 10px;
+  border-radius:20px;
+  font-weight:bold;
+  margin-left:6px;
+  background:rgba(255,255,255,0.2);
+  color:white;
+}
 
-  td {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .particle {
-    position: absolute;
-    top: -20px;
-    pointer-events: none;
-    animation: fall linear forwards;
-  }
-
-  @keyframes fall {
-    to {
-      transform: translateY(140px) rotate(360deg);
-    }
-  }
-
-  /* ================= BADGE ================= */
-
-  .badge {
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    margin-left: 6px;
-    backdrop-filter: blur(4px);
-    background: rgba(255,255,255,0.2);
-    color: white;
-  }
-
-  /* ================= NAMA KHUSUS ================= */
-
-  .nama.special {
-    padding: 6px 12px;
-    border-radius: 12px;
-    display: inline-block;
-    transition: 0.3s ease;
-    animation: blinkSoft 2s infinite alternate;
-    color: white;
-  }
-
-  /* CEO putih glow emas */
-  .CEO .nama.special {
-    border: 2px solid #ffd700;
-    text-shadow:
-      0 0 6px #ffd700,
-      0 0 12px #ffcc00,
-      0 0 18px #ffaa00;
-  }
-
-  /* Tuan putih glow biru */
-  .Tuan .nama.special {
-    border: 2px solid #6ec6ff;
-    text-shadow:
-      0 0 6px #00cfff,
-      0 0 12px #00aaff,
-      0 0 18px #0088ff;
-  }
-
-  /* Nona putih glow pink */
-  .Nona .nama.special {
-    border: 2px solid #ff9ecf;
-    text-shadow:
-      0 0 6px #ff69b4,
-      0 0 12px #ff85c1,
-      0 0 18px #ffb6d9;
-  }
-
-  @keyframes blinkSoft {
-    from { filter: brightness(1); }
-    to   { filter: brightness(1.3); }
-  }
-
-  </style>
+</style>
 </head>
 <body>
 
 <h1>💰 Data Uang Kas Kelas</h1>
 
 <div class="table-container">
-  <table>
-    <thead>
-      <tr id="headerRow">
-        <th>Nama</th>
-      </tr>
-    </thead>
-    <tbody id="dataKas"></tbody>
-  </table>
+<table>
+<thead>
+<tr id="headerRow">
+<th>Nama</th>
+</tr>
+</thead>
+<tbody id="dataKas"></tbody>
+</table>
 </div>
 
 <script>
 
-const totalMinggu = 15;
+const totalMinggu=15;
 
-const siswa = [
-  { nama: "Abilah", role: "Member", pembayaran: {} },
-  { nama: "Ade Novryan", role: "Member", pembayaran: {} },
-  { nama: "Afdhal Batista Dimas Prayoga", role: "Member", pembayaran: {} },
-  { nama: "Alfania Hana Khairunisiyah", role: "Member", pembayaran: {} },
-  { nama: "Aliefsyah Aditiyas Sumarno", role: "Member", pembayaran: {} },
-  { nama: "Arif Yoga Fitrianto", role: "Member", pembayaran: {} },
-  { nama: "Arjuna Zaidan Zidna Fann", role: "Member", pembayaran: {} },
-  { nama: "Ayesha Fadhlulhaq Janna", role: "Member", pembayaran: {} },
-  { nama: "Azhril Rasya Putra", role: "Member", pembayaran: {} },
-  { nama: "Bagus Riyadi", role: "Member", pembayaran: {} },
-  { nama: "Daffi Adira Cahyaditya", role: "Member", pembayaran: {} },
-  { nama: "Deril Afzal Ghani", role: "Member", pembayaran: {} },
-  { nama: "Erlangga Adhi Ramaputra", role: "Member", pembayaran: {} },
-  { nama: "Fahdly Kusumawardani", role: "Member", pembayaran: {} },
-  { nama: "Fahmi Pasha", role: "Member", pembayaran: {} },
-  { nama: "Fajar Khairil Darajat", role: "Member", pembayaran: {} },
-  { nama: "Febryan Rozaq Saputra", role: "Member", pembayaran: {} },
-  { nama: "Felicia Valentina Ayudinda", role: "Member", pembayaran: {} },
-  { nama: "Marcelino", role: "Member", pembayaran: {} },
-  { nama: "Muhamad Aqil Hidayatulloh", role: "Member", pembayaran: {} },
-  { nama: "Muhamad Dzaki Kusuma Al Amin", role: "Member", pembayaran: {} },
-  { nama: "Muhamad Zikri Syahrul Romdani", role: "Member", pembayaran: {} },
-  { nama: "Muhammad Salsabila", role: "Member", pembayaran: {} },
-  { nama: "Muhammad Zidan Djuned", role: "Member", pembayaran: {} },
-  { nama: "Nessa Camila Yusuf", role: "Member", pembayaran: {} },
-  { nama: "Parida Yasmin", role: "Member", pembayaran: {} },
-  { nama: "Raihan Kurniawan", role: "Member", pembayaran: {} },
-  { nama: "Stiven Oktavianus Kasi", role: "Member", pembayaran: {} },
-  { nama: "Syafiq Taqiya", role: "Member", pembayaran: {} },
-  { nama: "Syamsul Bahri", role: "Member", pembayaran: {} },
-  { nama: "Trinancy Hadinastiti", role: "Member", pembayaran: {} },
-  { nama: "Zhuardin Azainu Ismail", role: "Member", pembayaran: {} }
+const siswa=[
+  { nama:"Abilah",role:"Member",pembayaran:{} },
+  { nama:"Ade Novryan",role:"Member",pembayaran:{} },
+  { nama:"Afdhal Batista Dimas Prayoga",role:"Member",pembayaran:{} },
+  { nama:"Alfania Hana Khairunisiyah",role:"Member",pembayaran:{} },
+  { nama:"Aliefsyah Aditiyas Sumarno",role:"Member",pembayaran:{} },
+  { nama:"Arif Yoga Fitrianto",role:"Member",pembayaran:{} },
+  { nama:"Arjuna Zaidan Zidna Fann",role:"Member",pembayaran:{} },
+  { nama:"Ayesha Fadhlulhaq Janna",role:"Member",pembayaran:{} },
+  { nama:"Azhril Rasya Putra",role:"Member",pembayaran:{} },
+  { nama:"Bagus Riyadi",role:"Member",pembayaran:{} },
+  { nama:"Daffi Adira Cahyaditya",role:"Member",pembayaran:{} },
+  { nama:"Deril Afzal Ghani",role:"Member",pembayaran:{} },
+  { nama:"Erlangga Adhi Ramaputra",role:"Member",pembayaran:{} },
+  { nama:"Fahdly Kusumawardani",role:"Member",pembayaran:{} },
+  { nama:"Fahmi Pasha",role:"Member",pembayaran:{} },
+  { nama:"Fajar Khairil Darajat",role:"Member",pembayaran:{} },
+  { nama:"Febryan Rozaq Saputra",role:"Developer",pembayaran:{M1:"03.03.2026",M2:"04.03.2026"} },
+  { nama:"Felicia Valentina Ayudinda",role:"Member",pembayaran:{} },
+  { nama:"Marcelino",role:"Member",pembayaran:{} },
+  { nama:"Muhamad Aqil Hidayatulloh",role:"Member",pembayaran:{} },
+  { nama:"Muhamad Dzaki Kusuma Al Amin",role:"Member",pembayaran:{} },
+  { nama:"Muhamad Zikri Syahrul Romdani",role:"Member",pembayaran:{} },
+  { nama:"Muhammad Salsabila",role:"Member",pembayaran:{} },
+  { nama:"Muhammad Zidan Djuned",role:"Member",pembayaran:{} },
+  { nama:"Nessa Camila Yusuf",role:"Member",pembayaran:{} },
+  { nama:"Parida Yasmin",role:"Member",pembayaran:{} },
+  { nama:"Raihan Kurniawan",role:"Member",pembayaran:{} },
+  { nama:"Stiven Oktavianus Kasi",role:"Member",pembayaran:{} },
+  { nama:"Syafiq Taqiya",role:"Member",pembayaran:{} },
+  { nama:"Syamsul Bahri",role:"Member",pembayaran:{} },
+  { nama:"Trinancy Hadinastiti",role:"Member",pembayaran:{} },
+  { nama:"Zhuardin Azainu Ismail",role:"Member",pembayaran:{} }
 ];
 
-const headerRow = document.getElementById("headerRow");
-const tableBody = document.getElementById("dataKas");
+const headerRow=document.getElementById("headerRow");
+const tableBody=document.getElementById("dataKas");
 
-for (let i = 1; i <= totalMinggu; i++) {
-  headerRow.innerHTML += `<th>M${i}</th>`;
+for(let i=1;i<=totalMinggu;i++){
+  headerRow.innerHTML+=`<th>M${i}</th>`;
 }
 
-function getBadge(role) {
-  if (role === "CEO") return '<span class="badge">👑 CEO</span>';
-  if (role === "Tuan") return '<span class="badge">💧 Tuan Muda</span>';
-  if (role === "Nona") return '<span class="badge">🌸 Nona Muda</span>';
-  return '<span class="badge">🍃</span>';
+function getBadge(role){
+  if(role==="CEO")return'<span class="badge">👑 CEO</span>';
+  if(role==="Tuan")return'<span class="badge">💧 Tuan Muda</span>';
+  if(role==="Nona")return'<span class="badge">🌸 Nona Muda</span>';
+  if(role==="Developer")return'<span class="badge">👁 Developer</span>';
+  return'<span class="badge">🍃</span>';
 }
 
-siswa.forEach(s => {
-
-  let specialClass = s.role !== "Member" ? "special" : "";
-
-  let row = `<tr class="${s.role}">
-    <td class="nama ${specialClass}">
-      ${s.nama} ${getBadge(s.role)}
-    </td>`;
-
-  for (let i = 1; i <= totalMinggu; i++) {
-    const mingguKey = "M" + i;
-    const tanggal = s.pembayaran[mingguKey] || "";
-    row += `<td>${tanggal}</td>`;
+siswa.forEach(s=>{
+  let specialClass=s.role!=="Member"?"special":"";
+  let row=`<tr class="${s.role}">
+  <td class="nama ${specialClass}">
+  ${s.nama} ${getBadge(s.role)}
+  </td>`;
+  for(let i=1;i<=totalMinggu;i++){
+    const mingguKey="M"+i;
+    const tanggal=s.pembayaran[mingguKey]||"";
+    row+=`<td>${tanggal}</td>`;
   }
-
-  row += "</tr>";
-  tableBody.innerHTML += row;
-
+  row+="</tr>";
+  tableBody.innerHTML+=row;
 });
 
-/* ================= RANDOM PARTICLE ================= */
+/* FIRE BARA HALUS */
 
-function createParticles() {
-  document.querySelectorAll(".CEO td, .Tuan td, .Nona td").forEach(cell => {
-
-    const role = cell.parentElement.className;
-    let symbol = "";
-
-    if (role === "CEO") symbol = "✨";
-    if (role === "Tuan") symbol = "❄";
-    if (role === "Nona") symbol = "🌸";
-
-    if (!symbol) return;
-
-    setInterval(() => {
-      const particle = document.createElement("span");
-      particle.classList.add("particle");
-      particle.innerHTML = symbol;
-
-      particle.style.left = Math.random() * 100 + "%";
-      particle.style.fontSize = (10 + Math.random() * 12) + "px";
-      particle.style.animationDuration = (2 + Math.random() * 3) + "s";
-
-      cell.appendChild(particle);
-
-      setTimeout(() => {
-        particle.remove();
-      }, 5000);
-
-    }, 500);
-
+function createFire(){
+  document.querySelectorAll(".Developer td").forEach(cell=>{
+    setInterval(()=>{
+      const spark=document.createElement("span");
+      spark.classList.add("spark");
+      spark.innerHTML="•";
+      spark.style.color="#ff4500";
+      spark.style.left=Math.random()*100+"%";
+      spark.style.animationDuration=(0.8+Math.random()*1.2)+"s";
+      cell.appendChild(spark);
+      setTimeout(()=>spark.remove(),1200);
+    },700);
   });
 }
 
-createParticles();
+createFire();
 
 </script>
 
