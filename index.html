@@ -238,18 +238,12 @@ for (let i = 1; i <= totalMinggu; i++) {
 }
 
 // Badge icon otomatis
-  function getBadge(role) {
-  if (role === "CEO") 
-    return '<span class="badge ceo-badge">👑 CEO</span>';
-
-  if (role === "Tuan") 
-    return '<span class="badge tuan-badge">💧 Tuan Muda</span>';
-
-  if (role === "Nona") 
-    return '<span class="badge nona-badge">🌸 Nona Muda</span>';
-
+ function getBadge(role) {
+  if (role === "CEO") return '<span class="badge">👑 CEO</span>';
+  if (role === "Tuan") return '<span class="badge">💧 Tuan Muda</span>';
+  if (role === "Nona") return '<span class="badge">🌸 Nona Muda</span>';
   return '<span class="badge">🍃</span>';
-  }
+ }
 // Render tabel
 siswa.forEach(s => {
 
