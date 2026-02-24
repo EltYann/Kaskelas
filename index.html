@@ -14,17 +14,21 @@
       margin-bottom: 20px;
     }
 
+    .table-container {
+      overflow-x: auto;
+    }
+
     table {
       border-collapse: collapse;
-      width: 100%;
+      min-width: 1400px;
       background: white;
-      font-size: 14px;
     }
 
     th, td {
       border: 1px solid #ddd;
       padding: 6px;
       text-align: center;
+      font-size: 13px;
     }
 
     th {
@@ -35,105 +39,124 @@
     .nama {
       text-align: left;
       font-weight: bold;
+      min-width: 220px;
     }
 
-    /* ROW COLORS */
-    .ceo-row {
-      background: rgba(255, 215, 0, 0.25);
+    /* ROLE COLORS */
+    .CEO {
+      background: rgba(255, 215, 0, 0.2);
     }
 
-    .tuanmuda-row {
+    .Tuan {
       background: rgba(0, 114, 255, 0.15);
     }
 
-    /* BADGE STYLE */
-    .badge {
-      margin-left: 6px;
-      font-size: 13px;
+    .Nona {
+      background: rgba(255, 105, 180, 0.15);
     }
 
+    .badge {
+      margin-left: 6px;
+      font-size: 12px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
 <h1>💰 Data Uang Kas Kelas</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nama</th>
-      <th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th>
-      <th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th>
-      <th>M11</th><th>M12</th><th>M13</th><th>M14</th><th>M15</th>
-    </tr>
-  </thead>
-  <tbody id="dataKas"></tbody>
-</table>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr id="headerRow">
+        <th>Nama</th>
+      </tr>
+    </thead>
+    <tbody id="dataKas"></tbody>
+  </table>
+</div>
 
 <script>
 
+// ==============================
+// JUMLAH MINGGU (BISA DIUBAH)
+// ==============================
+const totalMinggu = 15;
+
+// ==============================
+// DATA SISWA (EDIT DI SINI)
+// ==============================
+
 const siswa = [
-"Abilah",
-"Ade Novryan",
-"Afdhal Batista Dimas Prayoga",
-"Alfania Hana Khairunisiyah",
-"Aliefsyah Aditiyas Sumarno",
-"Arif Yoga Fitrianto",
-"Arjuna Zaidan Zidna Fann",
-"Ayesha Fadhlulhaq Janna",
-"Azhril Rasya Putra",
-"Bagus Riyadi",
-"Daffi Adira Cahyaditya",
-"Deril Afzal Ghani",
-"Erlangga Adhi Ramaputra",
-"Fahdly Kusumawardani",
-"Fahmi Pasha",
-"Fajar Khairil Darajat",
-"Febryan Rozaq Saputra",
-"Felicia Valentina Ayudinda",
-"Marcelino",
-"Muhamad Aqil Hidayatulloh",
-"Muhamad Dzaki Kusuma Al Amin",
-"Muhamad Zikri Syahrul Romdani",
-"Muhammad Salsabila",
-"Muhammad Zidan Djuned",
-"Nessa Camila Yusuf",
-"Parida Yasmin",
-"Raihan Kurniawan",
-"Stiven Oktavianus Kasi",
-"Syafiq Taqiya",
-"Syamsul Bahri",
-"Trinancy Hadinastiti",
-"Zhuardin Azainu Ismail"
+  { nama: "Abilah", role: "Member", pembayaran: {} },
+  { nama: "Ade Novryan", role: "Member", pembayaran: {} },
+  { nama: "Afdhal Batista Dimas Prayoga", role: "Member", pembayaran: {} },
+  { nama: "Alfania Hana Khairunisiyah", role: "Member", pembayaran: {} },
+  { nama: "Aliefsyah Aditiyas Sumarno", role: "Member", pembayaran: {} },
+  { nama: "Arif Yoga Fitrianto", role: "Member", pembayaran: {} },
+  { nama: "Arjuna Zaidan Zidna Fann", role: "Member", pembayaran: {} },
+  { nama: "Ayesha Fadhlulhaq Janna", role: "Member", pembayaran: {} },
+  { nama: "Azhril Rasya Putra", role: "Member", pembayaran: {} },
+  { nama: "Bagus Riyadi", role: "Member", pembayaran: {} },
+  { nama: "Daffi Adira Cahyaditya", role: "Member", pembayaran: {} },
+  { nama: "Deril Afzal Ghani", role: "Member", pembayaran: {} },
+  { nama: "Erlangga Adhi Ramaputra", role: "Member", pembayaran: {} },
+  { nama: "Fahdly Kusumawardani", role: "Member", pembayaran: {} },
+  { nama: "Fahmi Pasha", role: "Member", pembayaran: {} },
+  { nama: "Fajar Khairil Darajat", role: "Member", pembayaran: {} },
+  { nama: "Febryan Rozaq Saputra", role: "Member", pembayaran: {} },
+  { nama: "Felicia Valentina Ayudinda", role: "Member", pembayaran: {} },
+  { nama: "Marcelino", role: "Member", pembayaran: {} },
+  { nama: "Muhamad Aqil Hidayatulloh", role: "Member", pembayaran: {} },
+  { nama: "Muhamad Dzaki Kusuma Al Amin", role: "Member", pembayaran: {} },
+  { nama: "Muhamad Zikri Syahrul Romdani", role: "Member", pembayaran: {} },
+  { nama: "Muhammad Salsabila", role: "Member", pembayaran: {} },
+  { nama: "Muhammad Zidan Djuned", role: "Member", pembayaran: {} },
+  { nama: "Nessa Camila Yusuf", role: "Member", pembayaran: {} },
+  { nama: "Parida Yasmin", role: "Member", pembayaran: {} },
+  { nama: "Raihan Kurniawan", role: "Member", pembayaran: {} },
+  { nama: "Stiven Oktavianus Kasi", role: "Member", pembayaran: {} },
+  { nama: "Syafiq Taqiya", role: "Member", pembayaran: {} },
+  { nama: "Syamsul Bahri", role: "Member", pembayaran: {} },
+  { nama: "Trinancy Hadinastiti", role: "Member", pembayaran: {} },
+  { nama: "Zhuardin Azainu Ismail", role: "Member", pembayaran: {} }
 ];
 
-const table = document.getElementById("dataKas");
+// ==============================
+// JANGAN EDIT DI BAWAH INI
+// ==============================
 
-siswa.forEach(nama => {
+const headerRow = document.getElementById("headerRow");
+const tableBody = document.getElementById("dataKas");
 
-  let rowClass = "";
-  let badge = "";
+// Buat kolom minggu otomatis
+for (let i = 1; i <= totalMinggu; i++) {
+  headerRow.innerHTML += `<th>M${i}</th>`;
+}
 
-  if (nama === "Febryan Rozaq Saputra") {
-    rowClass = "ceo-row";
-    badge = "👑 CEO";
-  } 
-  else if (nama === "Felicia Valentina Ayudinda") {
-    rowClass = "tuanmuda-row";
-    badge = "💧 Tuan Muda";
-  } 
-  else {
-    badge = "🍃";
+// Badge icon otomatis
+function getBadge(role) {
+  if (role === "CEO") return "👑 CEO";
+  if (role === "Tuan") return "💧 Tuan Muda";
+  if (role === "Nona") return "🌸 Nona Muda";
+  return "🍃";
+}
+
+// Render tabel
+siswa.forEach(s => {
+
+  let row = `<tr class="${s.role}">
+    <td class="nama">${s.nama} <span class="badge">${getBadge(s.role)}</span></td>`;
+
+  for (let i = 1; i <= totalMinggu; i++) {
+    const mingguKey = "M" + i;
+    const tanggal = s.pembayaran[mingguKey] || "";
+    row += `<td>${tanggal}</td>`;
   }
 
-  table.innerHTML += `
-    <tr class="${rowClass}">
-      <td class="nama">${nama} <span class="badge">${badge}</span></td>
-      <td></td><td></td><td></td><td></td><td></td>
-      <td></td><td></td><td></td><td></td><td></td>
-      <td></td><td></td><td></td><td></td><td></td>
-    </tr>
-  `;
+  row += "</tr>";
+  tableBody.innerHTML += row;
 
 });
 
