@@ -71,12 +71,11 @@
   }
 
   .CEO td::after {
-    content: "✨";
+    content: "🌟";
     position: absolute;
     top: -10px;
     left: 10%;
     font-size: 10px;
-    opacity: 1;
     animation: starSoft 6s linear infinite;
     pointer-events: none;
   }
@@ -84,12 +83,12 @@
   @keyframes starSoft {
     0% {
       transform: translateY(0) translateX(0);
-      opacity: 0.15;
+      opacity: 0.45;
     }
-    50% { opacity: 0.35; }
+    50% { opacity: 0.50; }
     100% {
       transform: translateY(100px) translateX(40px);
-      opacity: 0.15;
+      opacity: 0.45;
     }
   }
 
