@@ -41,9 +41,7 @@
     min-width: 220px;
   }
 
-  /* ===============================
-     PREMIUM SHIMMER BASE
-  =============================== */
+  
 
 .CEO td,
 .Tuan td,
@@ -52,7 +50,6 @@
   overflow: hidden;
 }
 
-/* shimmer halus di tiap cell */
 .CEO td::before,
 .Tuan td::before,
 .Nona td::before {
@@ -77,9 +74,7 @@
     100% { transform: translateX(50%); }
   }
 
-  /* ===============================
-     CEO LIQUID GOLD
-  =============================== */
+
 
   .CEO {
     background: linear-gradient(
@@ -101,31 +96,31 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-   /* =========================
-   CEO GOLD SPARKLE
-========================= */
-
+   
 .CEO td {
   position: relative;
   overflow: hidden;
 }
 
 .CEO td::after {
-  content: "✨";
+  content: "⭐";
   position: absolute;
-  font-size: 10px;
-  opacity: 0;
-  animation: sparkleMove 4s infinite;
+  top: -20px;
+  left: 0;
+  font-size: 14px;
+  animation: starFall 4s linear infinite;
+  pointer-events: none;
 }
 
-.CEO td:nth-child(3)::after { top: 20%; left: 20%; }
-.CEO td:nth-child(6)::after { top: 60%; left: 60%; }
-.CEO td:nth-child(9)::after { top: 40%; left: 40%; }
-
-@keyframes sparkleMove {
-  0%   { opacity: 0; transform: scale(0.5); }
-  50%  { opacity: 1; transform: scale(1.2); }
-  100% { opacity: 0; transform: scale(0.5); }
+@keyframes starFall {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120px) translateY(100px) rotate(360deg);
+    opacity: 0;
+  }
 }
 
   /* ===============================
@@ -150,24 +145,34 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-   /* =========================
-   TUAN WATER EFFECT
-========================= */
-
+   
 .Tuan td {
-  background-size: 300% 300%;
-  animation: waterFlow 6s ease infinite;
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes waterFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 60%; }
-  100% { background-position: 0% 50%; }
+.Tuan td::after {
+  content: "🧊";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  font-size: 14px;
+  animation: iceFall 5s linear infinite;
+  pointer-events: none;
 }
 
-  /* ===============================
-     NONA PINK METAL
-  =============================== */
+@keyframes iceFall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120px);
+    opacity: 0;
+  }
+}
+
+
 
   .Nona {
     background: linear-gradient(
@@ -187,9 +192,7 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-   /* =========================
-   NONA FLOWER FALL
-========================= */
+   
 
 .Nona td {
   position: relative;
@@ -217,9 +220,6 @@
   }
 }
 
-  /* ===============================
-     BADGE
-  =============================== */
 
   .badge {
     padding: 4px 10px;
@@ -248,14 +248,10 @@
 
 <script>
 
-// ==============================
-// JUMLAH MINGGU (BISA DIUBAH)
-// ==============================
+
 const totalMinggu = 15;
 
-// ==============================
-// DATA SISWA (EDIT DI SINI)
-// ==============================
+
 
 const siswa = [
   { nama: "Abilah", role: "Member", pembayaran: {} },
@@ -292,26 +288,24 @@ const siswa = [
   { nama: "Zhuardin Azainu Ismail", role: "Member", pembayaran: {} }
 ];
 
-// ==============================
-// JANGAN EDIT DI BAWAH INI
-// ==============================
+
 
 const headerRow = document.getElementById("headerRow");
 const tableBody = document.getElementById("dataKas");
 
-// Buat kolom minggu otomatis
+
 for (let i = 1; i <= totalMinggu; i++) {
   headerRow.innerHTML += `<th>M${i}</th>`;
 }
 
-// Badge icon otomatis
+
  function getBadge(role) {
   if (role === "CEO") return '<span class="badge">👑 CEO</span>';
   if (role === "Tuan") return '<span class="badge">💧 Tuan Muda</span>';
   if (role === "Nona") return '<span class="badge">🌸 Nona Muda</span>';
   return '<span class="badge">🍃</span>';
  }
-// Render tabel
+
 siswa.forEach(s => {
 
   let row = `<tr class="${s.role}">
