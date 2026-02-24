@@ -5,36 +5,152 @@
   <style>
     body {
       font-family: Arial;
-      background: linear-gradient(135deg, #4e73df, #1cc88a);
+      background: #f4f6f9;
       text-align: center;
-      color: white;
-      padding: 30px;
+      padding: 20px;
     }
 
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    /* RANK SECTION */
+    .rank-container {
+      margin-bottom: 40px;
+    }
+
+    .rank-box {
+      margin: 15px auto;
+      padding: 15px;
+      width: 80%;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .ceo-box {
+      background: linear-gradient(45deg, gold, orange);
+      color: black;
+    }
+
+    .tuanmuda-box {
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+    }
+
+    .member-box {
+      background: linear-gradient(45deg, #56ab2f, #a8e063);
+    }
+
+    .name {
+      margin: 5px;
+      display: inline-block;
+    }
+
+    /* TABLE */
     table {
       margin: auto;
       border-collapse: collapse;
       width: 80%;
       background: white;
-      color: black;
-      border-radius: 10px;
-      overflow: hidden;
     }
 
     th, td {
-      padding: 12px;
+      border: 1px solid #ddd;
+      padding: 10px;
     }
 
     th {
-      background-color: #4e73df;
+      background-color: #333;
       color: white;
     }
 
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
+  </style>
+</head>
+<body>
 
-    .badge {
+<h1>💰 Website Kas Kelas</h1>
+
+<!-- RANK SECTION -->
+<div class="rank-container">
+  <div class="rank-box ceo-box">
+    👑 CEO<br>
+    <div id="ceoList"></div>
+  </div>
+
+  <div class="rank-box tuanmuda-box">
+    💧 Tuan Muda<br>
+    <div id="tuanmudaList"></div>
+  </div>
+
+  <div class="rank-box member-box">
+    🍃 Member<br>
+    <div id="memberList"></div>
+  </div>
+</div>
+
+<!-- DATA TABLE -->
+<h2>Data Uang Kas</h2>
+
+<table>
+  <tr>
+    <th>Nama</th>
+    <th>Jumlah Bayar</th>
+  </tr>
+  <tbody id="dataKas"></tbody>
+</table>
+
+<script>
+
+const siswa = [
+  {nama: "Febryan", bayar: 28000},
+  {nama: "Cek Nai", bayar: 16000},
+  {nama: "Xep", bayar: 8000}
+];
+
+function tentukanBadge(bayar) {
+  if (bayar >= 28000) {
+    return "CEO";
+  } else if (bayar >= 15000) {
+    return "Tuan Muda";
+  } else {
+    return "Member";
+  }
+}
+
+const table = document.getElementById("dataKas");
+const ceoList = document.getElementById("ceoList");
+const tuanmudaList = document.getElementById("tuanmudaList");
+const memberList = document.getElementById("memberList");
+
+siswa.forEach(s => {
+
+  // isi tabel
+  table.innerHTML += `
+    <tr>
+      <td>${s.nama}</td>
+      <td>Rp ${s.bayar.toLocaleString()}</td>
+    </tr>
+  `;
+
+  // isi rank
+  const badge = tentukanBadge(s.bayar);
+
+  if (badge === "CEO") {
+    ceoList.innerHTML += `<span class="name">${s.nama}</span>`;
+  } 
+  else if (badge === "Tuan Muda") {
+    tuanmudaList.innerHTML += `<span class="name">${s.nama}</span>`;
+  } 
+  else {
+    memberList.innerHTML += `<span class="name">${s.nama}</span>`;
+  }
+
+});
+
+</script>
+
+</body>
+</html>    .badge {
       padding: 5px 10px;
       border-radius: 20px;
       font-weight: bold;
