@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kas Kelas</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(135deg, #4e73df, #1cc88a);
+      text-align: center;
+      color: white;
+      padding: 30px;
+    }
+
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 80%;
+      background: white;
+      color: black;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+    }
+
+    th {
+      background-color: #4e73df;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .badge {
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .ceo {
+      background-color: gold;
+    }
+
+    .investor {
+      background-color: #00c2ff;
+      color: white;
+    }
+
+    .member {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<h1>💰 Website Kas Kelas</h1>
+
+<table>
+  <tr>
+    <th>Nama</th>
+    <th>Jumlah Bayar</th>
+    <th>Status</th>
+  </tr>
+  <tbody id="dataKas"></tbody>
+</table>
+
+<script>
+const targetSemester = 300000;
+
+const siswa = [
+  {nama: "Andi", bayar: 300000},
+  {nama: "Budi", bayar: 200000},
+  {nama: "Citra", bayar: 400000}
+];
+
+function tentukanBadge(bayar) {
+  if (bayar >= 400000) {
+    return '<span class="badge investor">💎 Investor</span>';
+  }
+  if (bayar >= targetSemester) {
+    return '<span class="badge ceo">🏆 CEO</span>';
+  }
+  return '<span class="badge member">Member</span>';
+}
+
+const table = document.getElementById("dataKas");
+
+siswa.forEach(s => {
+  table.innerHTML += `
+    <tr>
+      <td>${s.nama}</td>
+      <td>Rp ${s.bayar.toLocaleString()}</td>
+      <td>${tentukanBadge(s.bayar)}</td>
+    </tr>
+  `;
+});
+</script>
+
+</body>
+</html>
