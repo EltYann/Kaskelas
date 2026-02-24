@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Kas Kelas</title>
-  <style>
+ <style>
+
   body {
     font-family: Arial;
     padding: 20px;
@@ -29,6 +30,7 @@
     padding: 6px;
     text-align: center;
     font-size: 13px;
+    position: relative;
   }
 
   th {
@@ -41,82 +43,126 @@
     font-weight: bold;
     min-width: 220px;
   }
-  .CEO {
-    background: rgba(255, 215, 0, 0.15);
-  }
 
-  .Tuan {
-    background: rgba(0, 114, 255, 0.12);
-  }
+  /* ===============================
+     PREMIUM SHIMMER BASE
+  =============================== */
 
+  .CEO,
+  .Tuan,
   .Nona {
-    background: rgba(255, 105, 180, 0.12);
-  }
-  .badge {
-    margin-left: 6px;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 20px;
     position: relative;
     overflow: hidden;
-  }
-  .ceo-badge {
-    background: linear-gradient(
-      120deg,
-      #b8860b 0%,
-      #ffd700 25%,
-      #fff8dc 50%,
-      #ffd700 75%,
-      #b8860b 100%
-    );
-    color: #222;
-    animation: glowGold 2s infinite alternate;
+    color: white;
   }
 
-  .ceo-badge::after {
+  .CEO::before,
+  .Tuan::before,
+  .Nona::before {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 60%;
+    left: -150%;
+    width: 200%;
     height: 100%;
-    background: rgba(255,255,255,0.4);
-    transform: skewX(-25deg);
-    animation: shine 2.5s infinite;
+    background: linear-gradient(
+      120deg,
+      rgba(255,255,255,0.05) 0%,
+      rgba(255,255,255,0.25) 50%,
+      rgba(255,255,255,0.05) 100%
+    );
+    animation: shimmerMove 6s infinite linear;
   }
 
-  @keyframes glowGold {
-    from { box-shadow: 0 0 5px rgba(255,215,0,0.4); }
-    to   { box-shadow: 0 0 18px rgba(255,215,0,0.9); }
+  @keyframes shimmerMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50%); }
   }
 
-  @keyframes shine {
-    0% { left: -100%; }
-    100% { left: 130%; }
-  }
-  .tuan-badge {
-    background: linear-gradient(120deg, #00c6ff, #0072ff);
-    color: white;
-    animation: glowBlue 2s infinite alternate;
+  /* ===============================
+     CEO LIQUID GOLD
+  =============================== */
+
+  .CEO {
+    background: linear-gradient(
+      135deg,
+      #8f6b00,
+      #d4af37,
+      #ffd700,
+      #fff3b0,
+      #d4af37,
+      #8f6b00
+    );
+    background-size: 400% 400%;
+    animation: goldFlow 10s ease infinite;
+    color: #222;
   }
 
-  @keyframes glowBlue {
-    from { box-shadow: 0 0 5px rgba(0,114,255,0.4); }
-    to   { box-shadow: 0 0 15px rgba(0,114,255,0.8); }
-  }
-  .nona-badge {
-    background: linear-gradient(120deg, #ff9ecb, #ff69b4);
-    color: white;
-    animation: glowPink 2s infinite alternate;
+  @keyframes goldFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  @keyframes glowPink {
-    from { box-shadow: 0 0 5px rgba(255,105,180,0.4); }
-    to   { box-shadow: 0 0 15px rgba(255,105,180,0.8); }
+  /* ===============================
+     TUAN BLUE METAL
+  =============================== */
+
+  .Tuan {
+    background: linear-gradient(
+      135deg,
+      #003c7a,
+      #0072ff,
+      #00c6ff,
+      #0072ff,
+      #003c7a
+    );
+    background-size: 400% 400%;
+    animation: blueFlow 10s ease infinite;
   }
 
-  </style>
+  @keyframes blueFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ===============================
+     NONA PINK METAL
+  =============================== */
+
+  .Nona {
+    background: linear-gradient(
+      135deg,
+      #c2185b,
+      #ff69b4,
+      #ffc0cb,
+      #ff69b4,
+      #c2185b
+    );
+    background-size: 400% 400%;
+    animation: pinkFlow 10s ease infinite;
+  }
+
+  @keyframes pinkFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ===============================
+     BADGE
+  =============================== */
+
+  .badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-left: 6px;
+    backdrop-filter: blur(4px);
+  }
+
+ </style>
 </head>
 <body>
 
@@ -160,7 +206,7 @@ const siswa = [
   { nama: "Erlangga Adhi Ramaputra", role: "Member", pembayaran: {} },
   { nama: "Fahdly Kusumawardani", role: "Member", pembayaran: {} },
   { nama: "Fahmi Pasha", role: "Member", pembayaran: {} },
-  { nama: "Fajar Khairil Darajat", role: "Member", pembayaran: {} },
+  { nama: "Fajar Khairil Darajat", role: "Tuan", pembayaran: {} },
   { nama: "Febryan Rozaq Saputra", role: "CEO", pembayaran: {M1: "03.03.2026", M2: "04.03.2026"} },
   { nama: "Felicia Valentina Ayudinda", role: "Nona", pembayaran: {} },
   { nama: "Marcelino", role: "Member", pembayaran: {} },
