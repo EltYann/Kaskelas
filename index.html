@@ -45,31 +45,32 @@
      PREMIUM SHIMMER BASE
   =============================== */
 
-  .CEO,
-  .Tuan,
-  .Nona {
-    position: relative;
-    overflow: hidden;
-    color: white;
-  }
+.CEO td,
+.Tuan td,
+.Nona td {
+  position: relative;
+  overflow: hidden;
+}
 
-  .CEO::before,
-  .Tuan::before,
-  .Nona::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -150%;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      rgba(255,255,255,0.05) 0%,
-      rgba(255,255,255,0.25) 50%,
-      rgba(255,255,255,0.05) 100%
-    );
-    animation: shimmerMove 6s infinite linear;
-  }
+/* shimmer halus di tiap cell */
+.CEO td::before,
+.Tuan td::before,
+.Nona td::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.25) 50%,
+    rgba(255,255,255,0.05) 100%
+  );
+  animation: shimmerMove 6s infinite linear;
+  pointer-events: none;
+}
 
   @keyframes shimmerMove {
     0% { transform: translateX(0); }
