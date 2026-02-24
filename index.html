@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Kas Kelas</title>
- <style>
+  <style>
 
   body {
     font-family: Arial;
@@ -24,12 +24,14 @@
     min-width: 1400px;
     background: white;
   }
- th, td {
-  border: 1px solid #ddd;
-  padding: 6px;
-  text-align: center;
-  font-size: 13px;
- } 
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: center;
+    font-size: 13px;
+  }
+
   th {
     background: #222;
     color: white;
@@ -41,157 +43,151 @@
     min-width: 220px;
   }
 
-  
-
-.CEO td,
-.Tuan td,
-.Nona td {
-  position: relative;
-  overflow: hidden;
-}
+  /* ================= CEO ================= */
 
   .CEO {
-  background: linear-gradient(
-    120deg,
-    #caa93f,
-    #e6c65c,
-    #d4b347,
-    #e6c65c,
-    #caa93f
-  );
-  background-size: 200% 200%;
-  animation: goldSoft 12s ease-in-out infinite;
-  color: #2b2b2b;
-}
-
-@keyframes goldSoft {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-   
-.CEO td {
-  position: relative;
-  overflow: hidden;
-}
-
-
-.CEO td::after {
-  content: "✨";
-  position: absolute;
-  top: -10px;
-  left: 10%;
-  font-size: 10px;
-  opacity: 0.25;
-  animation: starSoft 6s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes starSoft {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.15;
+    background: linear-gradient(
+      120deg,
+      #caa93f,
+      #e6c65c,
+      #d4b347,
+      #e6c65c,
+      #caa93f
+    );
+    background-size: 200% 200%;
+    animation: goldSoft 12s ease-in-out infinite;
+    color: #2b2b2b;
   }
-  50% {
-    opacity: 0.35;
+
+  @keyframes goldSoft {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
-  100% {
-    transform: translateY(100px) translateX(40px);
-    opacity: 0.15;
+
+  .CEO td {
+    position: relative;
+    overflow: hidden;
   }
-}
-  
+
+  .CEO td::after {
+    content: "✨";
+    position: absolute;
+    top: -10px;
+    left: 10%;
+    font-size: 10px;
+    opacity: 0.25;
+    animation: starSoft 6s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes starSoft {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.15;
+    }
+    50% { opacity: 0.35; }
+    100% {
+      transform: translateY(100px) translateX(40px);
+      opacity: 0.15;
+    }
+  }
+
+  /* ================= TUAN ================= */
+
   .Tuan {
-  background: linear-gradient(
-    120deg,
-    #2f6fa3,
-    #3f86c6,
-    #2f6fa3,
-    #3f86c6,
-    #2f6fa3
-  );
-  background-size: 200% 200%;
-  animation: blueSoft 12s ease-in-out infinite;
-  color: white;
-}
-
-@keyframes blueSoft {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-   
-.Tuan td {
-  position: relative;
-  overflow: hidden;
-}
-
-.Tuan td::after {
-  content: "❄";
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  font-size: 14px;
-  animation: iceFall 3s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes iceFall {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
+    background: linear-gradient(
+      120deg,
+      #2f6fa3,
+      #3f86c6,
+      #2f6fa3,
+      #3f86c6,
+      #2f6fa3
+    );
+    background-size: 200% 200%;
+    animation: blueSoft 12s ease-in-out infinite;
+    color: white;
   }
-  100% {
-    transform: translateY(120px);
-    opacity: 0;
+
+  @keyframes blueSoft {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
-  
+
+  .Tuan td {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .Tuan td::after {
+    content: "❄";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    font-size: 14px;
+    animation: iceFall 3s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes iceFall {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(120px);
+      opacity: 0;
+    }
+  }
+
+  /* ================= NONA ================= */
+
   .Nona {
-  background: linear-gradient(
-    120deg,
-    #d96c9a,
-    #f08bb5,
-    #d96c9a,
-    #f08bb5,
-    #d96c9a
-  );
-  background-size: 200% 200%;
-  animation: pinkSoft 12s ease-in-out infinite;
-  color: white;
-}
-
-.Nona td {
-  position: relative;
-  overflow: hidden;
-}
-
-@keyframes pinkSoft {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.Nona td::after {
-  content: "🌸";
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  font-size: 14px;
-  animation: flowerFall 3s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes flowerFall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
+    background: linear-gradient(
+      120deg,
+      #d96c9a,
+      #f08bb5,
+      #d96c9a,
+      #f08bb5,
+      #d96c9a
+    );
+    background-size: 200% 200%;
+    animation: pinkSoft 12s ease-in-out infinite;
+    color: white;
   }
-  100% {
-    transform: translateY(120px) rotate(360deg);
-    opacity: 0;
-  }
-}
 
+  @keyframes pinkSoft {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .Nona td {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .Nona td::after {
+    content: "🌸";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    font-size: 14px;
+    animation: flowerFall 3s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes flowerFall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(120px) rotate(360deg);
+      opacity: 0;
+    }
+  }
 
   .badge {
     padding: 4px 10px;
@@ -199,9 +195,10 @@
     font-weight: bold;
     margin-left: 6px;
     backdrop-filter: blur(4px);
+    background: rgba(255,255,255,0.2);
   }
 
- </style>
+  </style>
 </head>
 <body>
 
@@ -220,10 +217,7 @@
 
 <script>
 
-
 const totalMinggu = 15;
-
-
 
 const siswa = [
   { nama: "Abilah", role: "Member", pembayaran: {} },
@@ -260,28 +254,24 @@ const siswa = [
   { nama: "Zhuardin Azainu Ismail", role: "Member", pembayaran: {} }
 ];
 
-
-
 const headerRow = document.getElementById("headerRow");
 const tableBody = document.getElementById("dataKas");
-
 
 for (let i = 1; i <= totalMinggu; i++) {
   headerRow.innerHTML += `<th>M${i}</th>`;
 }
 
-
- function getBadge(role) {
+function getBadge(role) {
   if (role === "CEO") return '<span class="badge">👑 CEO</span>';
   if (role === "Tuan") return '<span class="badge">💧 Tuan Muda</span>';
   if (role === "Nona") return '<span class="badge">🌸 Nona Muda</span>';
   return '<span class="badge">🍃</span>';
- }
+}
 
 siswa.forEach(s => {
 
   let row = `<tr class="${s.role}">
-    <td class="nama">${s.nama} <span class="badge">${getBadge(s.role)}</span></td>`;
+    <td class="nama">${s.nama} ${getBadge(s.role)}</td>`;
 
   for (let i = 1; i <= totalMinggu; i++) {
     const mingguKey = "M" + i;
