@@ -65,33 +65,6 @@
     100% { background-position: 0% 50%; }
   }
 
-  .CEO td {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .CEO td::after {
-    content: "🌟";
-    position: absolute;
-    top: -10px;
-    left: 10%;
-    font-size: 12px;
-    animation: starSoft 3s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes starSoft {
-    0% {
-      transform: translateY(0) translateX(0);
-      opacity: 0.45;
-    }
-    50% { opacity: 0.50; }
-    100% {
-      transform: translateY(100px) translateX(40px);
-      opacity: 0.45;
-    }
-  }
-
   /* ================= TUAN ================= */
 
   .Tuan {
@@ -112,32 +85,6 @@
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-  }
-
-  .Tuan td {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .Tuan td::after {
-    content: "❄";
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    font-size: 14px;
-    animation: iceFall 3s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes iceFall {
-    0% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(120px);
-      opacity: 0;
-    }
   }
 
   /* ================= NONA ================= */
@@ -162,31 +109,27 @@
     100% { background-position: 0% 50%; }
   }
 
-  .Nona td {
+  /* ================= PARTICLE ================= */
+
+  td {
     position: relative;
     overflow: hidden;
   }
 
-  .Nona td::after {
-    content: "🌸";
+  .particle {
     position: absolute;
     top: -20px;
-    left: 50%;
-    font-size: 14px;
-    animation: flowerFall 3s linear infinite;
     pointer-events: none;
+    animation: fall linear forwards;
   }
 
-  @keyframes flowerFall {
-    0% {
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(120px) rotate(360deg);
-      opacity: 0;
+  @keyframes fall {
+    to {
+      transform: translateY(140px) rotate(360deg);
     }
   }
+
+  /* ================= BADGE ================= */
 
   .badge {
     padding: 4px 10px;
@@ -195,6 +138,39 @@
     margin-left: 6px;
     backdrop-filter: blur(4px);
     background: rgba(255,255,255,0.2);
+  }
+
+  /* ================= NAMA KHUSUS ================= */
+
+  .nama.special {
+    padding: 6px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    transition: 0.3s ease;
+    animation: blinkSoft 2s infinite alternate;
+  }
+
+  .CEO .nama.special {
+    border: 2px solid #e6c65c;
+    color: #7a5c00;
+    text-shadow: 0 0 6px #ffd700;
+  }
+
+  .Tuan .nama.special {
+    border: 2px solid #6ec6ff;
+    color: #e0f7ff;
+    text-shadow: 0 0 6px #00cfff;
+  }
+
+  .Nona .nama.special {
+    border: 2px solid #ff9ecf;
+    color: #fff0f7;
+    text-shadow: 0 0 6px #ff69b4;
+  }
+
+  @keyframes blinkSoft {
+    from { filter: brightness(1); }
+    to   { filter: brightness(1.3); }
   }
 
   </style>
@@ -269,8 +245,12 @@ function getBadge(role) {
 
 siswa.forEach(s => {
 
+  let specialClass = s.role !== "Member" ? "special" : "";
+
   let row = `<tr class="${s.role}">
-    <td class="nama">${s.nama} ${getBadge(s.role)}</td>`;
+    <td class="nama ${specialClass}">
+      ${s.nama} ${getBadge(s.role)}
+    </td>`;
 
   for (let i = 1; i <= totalMinggu; i++) {
     const mingguKey = "M" + i;
@@ -282,6 +262,42 @@ siswa.forEach(s => {
   tableBody.innerHTML += row;
 
 });
+
+/* ================= RANDOM PARTICLE ================= */
+
+function createParticles() {
+  document.querySelectorAll(".CEO td, .Tuan td, .Nona td").forEach(cell => {
+
+    const role = cell.parentElement.className;
+    let symbol = "";
+
+    if (role === "CEO") symbol = "✨";
+    if (role === "Tuan") symbol = "❄";
+    if (role === "Nona") symbol = "🌸";
+
+    if (!symbol) return;
+
+    setInterval(() => {
+      const particle = document.createElement("span");
+      particle.classList.add("particle");
+      particle.innerHTML = symbol;
+
+      particle.style.left = Math.random() * 100 + "%";
+      particle.style.fontSize = (10 + Math.random() * 12) + "px";
+      particle.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+      cell.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 5000);
+
+    }, 500);
+
+  });
+}
+
+createParticles();
 
 </script>
 
