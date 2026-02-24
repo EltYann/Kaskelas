@@ -5,214 +5,138 @@
   <style>
     body {
       font-family: Arial;
-      background: #f4f6f9;
-      text-align: center;
       padding: 20px;
+      background: #f4f6f9;
     }
 
     h1 {
-      margin-bottom: 10px;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
-    /* RANK SECTION */
-    .rank-container {
-      margin-bottom: 40px;
-    }
-
-    .rank-box {
-      margin: 15px auto;
-      padding: 15px;
-      width: 80%;
-      border-radius: 12px;
-      color: white;
-      font-weight: bold;
-    }
-
-    .ceo-box {
-      background: linear-gradient(45deg, gold, orange);
-      color: black;
-    }
-
-    .tuanmuda-box {
-      background: linear-gradient(45deg, #00c6ff, #0072ff);
-    }
-
-    .member-box {
-      background: linear-gradient(45deg, #56ab2f, #a8e063);
-    }
-
-    .name {
-      margin: 5px;
-      display: inline-block;
-    }
-
-    /* TABLE */
     table {
-      margin: auto;
       border-collapse: collapse;
-      width: 80%;
+      width: 100%;
       background: white;
+      font-size: 14px;
     }
 
     th, td {
       border: 1px solid #ddd;
-      padding: 10px;
+      padding: 6px;
+      text-align: center;
     }
 
     th {
-      background-color: #333;
+      background: #222;
       color: white;
     }
 
-  </style>
-</head>
-<body>
-
-<h1>💰 Website Kas Kelas</h1>
-
-<!-- RANK SECTION -->
-<div class="rank-container">
-  <div class="rank-box ceo-box">
-    👑 CEO<br>
-    <div id="ceoList"></div>
-  </div>
-
-  <div class="rank-box tuanmuda-box">
-    💧 Tuan Muda<br>
-    <div id="tuanmudaList"></div>
-  </div>
-
-  <div class="rank-box member-box">
-    🍃 Member<br>
-    <div id="memberList"></div>
-  </div>
-</div>
-
-<!-- DATA TABLE -->
-<h2>Data Uang Kas</h2>
-
-<table>
-  <tr>
-    <th>Nama</th>
-    <th>Jumlah Bayar</th>
-  </tr>
-  <tbody id="dataKas"></tbody>
-</table>
-
-<script>
-
-const siswa = [
-  {nama: "Febryan", bayar: 28000},
-  {nama: "Cek Nai", bayar: 16000},
-  {nama: "Xep", bayar: 8000}
-];
-
-function tentukanBadge(bayar) {
-  if (bayar >= 28000) {
-    return "CEO";
-  } else if (bayar >= 15000) {
-    return "Tuan Muda";
-  } else {
-    return "Member";
-  }
-}
-
-const table = document.getElementById("dataKas");
-const ceoList = document.getElementById("ceoList");
-const tuanmudaList = document.getElementById("tuanmudaList");
-const memberList = document.getElementById("memberList");
-
-siswa.forEach(s => {
-
-  // isi tabel
-  table.innerHTML += `
-    <tr>
-      <td>${s.nama}</td>
-      <td>Rp ${s.bayar.toLocaleString()}</td>
-    </tr>
-  `;
-
-  // isi rank
-  const badge = tentukanBadge(s.bayar);
-
-  if (badge === "CEO") {
-    ceoList.innerHTML += `<span class="name">${s.nama}</span>`;
-  } 
-  else if (badge === "Tuan Muda") {
-    tuanmudaList.innerHTML += `<span class="name">${s.nama}</span>`;
-  } 
-  else {
-    memberList.innerHTML += `<span class="name">${s.nama}</span>`;
-  }
-
-});
-
-</script>
-
-</body>
-</html>    .badge {
-      padding: 5px 10px;
-      border-radius: 20px;
+    .nama {
+      text-align: left;
       font-weight: bold;
     }
 
-    .ceo {
-      background-color: gold;
+    /* ROW COLORS */
+    .ceo-row {
+      background: rgba(255, 215, 0, 0.25);
     }
 
-    .investor {
-      background-color: #00c2ff;
-      color: white;
+    .tuanmuda-row {
+      background: rgba(0, 114, 255, 0.15);
     }
 
-    .member {
-      background-color: #ddd;
+    /* BADGE STYLE */
+    .badge {
+      margin-left: 6px;
+      font-size: 13px;
     }
+
   </style>
 </head>
 <body>
 
-<h1>💰 Website Kas Kelas</h1>
+<h1>💰 Data Uang Kas Kelas</h1>
 
 <table>
-  <tr>
-    <th>Nama</th>
-    <th>Jumlah Bayar</th>
-    <th>Status</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th>
+      <th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th>
+      <th>M11</th><th>M12</th><th>M13</th><th>M14</th><th>M15</th>
+    </tr>
+  </thead>
   <tbody id="dataKas"></tbody>
 </table>
 
 <script>
-const targetSemester = 300000;
 
 const siswa = [
-  {nama: "Andi", bayar: 300000},
-  {nama: "Budi", bayar: 200000},
-  {nama: "Citra", bayar: 400000}
+"Abilah",
+"Ade Novryan",
+"Afdhal Batista Dimas Prayoga",
+"Alfania Hana Khairunisiyah",
+"Aliefsyah Aditiyas Sumarno",
+"Arif Yoga Fitrianto",
+"Arjuna Zaidan Zidna Fann",
+"Ayesha Fadhlulhaq Janna",
+"Azhril Rasya Putra",
+"Bagus Riyadi",
+"Daffi Adira Cahyaditya",
+"Deril Afzal Ghani",
+"Erlangga Adhi Ramaputra",
+"Fahdly Kusumawardani",
+"Fahmi Pasha",
+"Fajar Khairil Darajat",
+"Febryan Rozaq Saputra",
+"Felicia Valentina Ayudinda",
+"Marcelino",
+"Muhamad Aqil Hidayatulloh",
+"Muhamad Dzaki Kusuma Al Amin",
+"Muhamad Zikri Syahrul Romdani",
+"Muhammad Salsabila",
+"Muhammad Zidan Djuned",
+"Nessa Camila Yusuf",
+"Parida Yasmin",
+"Raihan Kurniawan",
+"Stiven Oktavianus Kasi",
+"Syafiq Taqiya",
+"Syamsul Bahri",
+"Trinancy Hadinastiti",
+"Zhuardin Azainu Ismail"
 ];
-
-function tentukanBadge(bayar) {
-  if (bayar >= 400000) {
-    return '<span class="badge investor">💎 Investor</span>';
-  }
-  if (bayar >= targetSemester) {
-    return '<span class="badge ceo">🏆 CEO</span>';
-  }
-  return '<span class="badge member">Member</span>';
-}
 
 const table = document.getElementById("dataKas");
 
-siswa.forEach(s => {
+siswa.forEach(nama => {
+
+  let rowClass = "";
+  let badge = "";
+
+  if (nama === "Febryan Rozaq Saputra") {
+    rowClass = "ceo-row";
+    badge = "👑 CEO";
+  } 
+  else if (nama === "Felicia Valentina Ayudinda") {
+    rowClass = "tuanmuda-row";
+    badge = "💧 Tuan Muda";
+  } 
+  else {
+    badge = "🍃";
+  }
+
   table.innerHTML += `
-    <tr>
-      <td>${s.nama}</td>
-      <td>Rp ${s.bayar.toLocaleString()}</td>
-      <td>${tentukanBadge(s.bayar)}</td>
+    <tr class="${rowClass}">
+      <td class="nama">${nama} <span class="badge">${badge}</span></td>
+      <td></td><td></td><td></td><td></td><td></td>
+      <td></td><td></td><td></td><td></td><td></td>
+      <td></td><td></td><td></td><td></td><td></td>
     </tr>
   `;
+
 });
+
 </script>
 
 </body>
