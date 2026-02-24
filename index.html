@@ -56,7 +56,6 @@
     );
     background-size: 200% 200%;
     animation: goldSoft 12s ease-in-out infinite;
-    color: #2b2b2b;
   }
 
   @keyframes goldSoft {
@@ -78,7 +77,6 @@
     );
     background-size: 200% 200%;
     animation: blueSoft 12s ease-in-out infinite;
-    color: white;
   }
 
   @keyframes blueSoft {
@@ -100,7 +98,6 @@
     );
     background-size: 200% 200%;
     animation: pinkSoft 12s ease-in-out infinite;
-    color: white;
   }
 
   @keyframes pinkSoft {
@@ -138,6 +135,7 @@
     margin-left: 6px;
     backdrop-filter: blur(4px);
     background: rgba(255,255,255,0.2);
+    color: white;
   }
 
   /* ================= NAMA KHUSUS ================= */
@@ -148,24 +146,34 @@
     display: inline-block;
     transition: 0.3s ease;
     animation: blinkSoft 2s infinite alternate;
+    color: white;
   }
 
+  /* CEO putih glow emas */
   .CEO .nama.special {
-    border: 2px solid #e6c65c;
-    color: #7a5c00;
-    text-shadow: 0 0 6px #ffd700;
+    border: 2px solid #ffd700;
+    text-shadow:
+      0 0 6px #ffd700,
+      0 0 12px #ffcc00,
+      0 0 18px #ffaa00;
   }
 
+  /* Tuan putih glow biru */
   .Tuan .nama.special {
     border: 2px solid #6ec6ff;
-    color: #e0f7ff;
-    text-shadow: 0 0 6px #00cfff;
+    text-shadow:
+      0 0 6px #00cfff,
+      0 0 12px #00aaff,
+      0 0 18px #0088ff;
   }
 
+  /* Nona putih glow pink */
   .Nona .nama.special {
     border: 2px solid #ff9ecf;
-    color: #fff0f7;
-    text-shadow: 0 0 6px #ff69b4;
+    text-shadow:
+      0 0 6px #ff69b4,
+      0 0 12px #ff85c1,
+      0 0 18px #ffb6d9;
   }
 
   @keyframes blinkSoft {
@@ -210,9 +218,9 @@ const siswa = [
   { nama: "Erlangga Adhi Ramaputra", role: "Member", pembayaran: {} },
   { nama: "Fahdly Kusumawardani", role: "Member", pembayaran: {} },
   { nama: "Fahmi Pasha", role: "Member", pembayaran: {} },
-  { nama: "Fajar Khairil Darajat", role: "Tuan", pembayaran: {} },
-  { nama: "Febryan Rozaq Saputra", role: "CEO", pembayaran: {M1: "03.03.2026", M2: "04.03.2026"} },
-  { nama: "Felicia Valentina Ayudinda", role: "Nona", pembayaran: {} },
+  { nama: "Fajar Khairil Darajat", role: "Member", pembayaran: {} },
+  { nama: "Febryan Rozaq Saputra", role: "Member", pembayaran: {} },
+  { nama: "Felicia Valentina Ayudinda", role: "Member", pembayaran: {} },
   { nama: "Marcelino", role: "Member", pembayaran: {} },
   { nama: "Muhamad Aqil Hidayatulloh", role: "Member", pembayaran: {} },
   { nama: "Muhamad Dzaki Kusuma Al Amin", role: "Member", pembayaran: {} },
