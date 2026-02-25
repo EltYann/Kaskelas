@@ -155,7 +155,7 @@ th{
   to{transform:translateX(0%);}
 }
 
-/* ================= CEO ================= */
+/* ================= ROLE BACKGROUND ================= */
 
 .CEO{
   background:linear-gradient(120deg,#caa93f,#e6c65c,#d4b347,#e6c65c,#caa93f);
@@ -169,8 +169,6 @@ th{
   100%{background-position:0% 50%;}
 }
 
-/* ================= TUAN ================= */
-
 .Tuan{
   background:linear-gradient(120deg,#2f6fa3,#3f86c6,#2f6fa3,#3f86c6,#2f6fa3);
   background-size:200% 200%;
@@ -182,8 +180,6 @@ th{
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
-
-/* ================= NONA ================= */
 
 .Nona{
   background:linear-gradient(120deg,#d96c9a,#f08bb5,#d96c9a,#f08bb5,#d96c9a);
@@ -238,21 +234,7 @@ th{
   100%{transform:translateX(15px);}
 }
 
-.spark{
-  position:absolute;
-  bottom:5px;
-  font-size:6px;
-  pointer-events:none;
-  animation:riseSoft linear forwards;
-  opacity:0.9;
-}
-
-@keyframes riseSoft{
-  to{
-    transform:translateY(-60px) translateX(5px);
-    opacity:0;
-  }
-}
+/* ================= SPECIAL NAME ================= */
 
 .nama.special{
   padding:6px 12px;
@@ -260,6 +242,21 @@ th{
   display:inline-block;
   animation:blinkSoft 2s infinite alternate;
   color:white;
+}
+
+.CEO .nama.special{
+  border:2px solid #ffd700;
+  text-shadow:0 0 6px #ffd700,0 0 12px #ffcc00,0 0 18px #ffaa00;
+}
+
+.Tuan .nama.special{
+  border:2px solid #6ec6ff;
+  text-shadow:0 0 6px #00cfff,0 0 12px #00aaff,0 0 18px #0088ff;
+}
+
+.Nona .nama.special{
+  border:2px solid #ff9ecf;
+  text-shadow:0 0 6px #ff69b4,0 0 12px #ff85c1,0 0 18px #ffb6d9;
 }
 
 .Developer .nama.special{
@@ -279,6 +276,22 @@ th{
   margin-left:6px;
   background:rgba(255,255,255,0.2);
   color:white;
+}
+
+.spark{
+  position:absolute;
+  bottom:5px;
+  font-size:6px;
+  pointer-events:none;
+  animation:riseSoft linear forwards;
+  opacity:0.9;
+}
+
+@keyframes riseSoft{
+  to{
+    transform:translateY(-60px) translateX(5px);
+    opacity:0;
+  }
 }
 
 </style>
@@ -310,12 +323,12 @@ th{
 const totalMinggu=15;
 
 const siswa=[
-  { nama:"Abilah",role:"CEO",pembayaran:{} },
+  { nama:"Abilah",role:"Member",pembayaran:{} },
   { nama:"Ade Novryan",role:"Member",pembayaran:{} },
   { nama:"Afdhal Batista Dimas Prayoga",role:"Member",pembayaran:{} },
   { nama:"Alfania Hana Khairunisiyah",role:"Member",pembayaran:{} },
   { nama:"Aliefsyah Aditiyas Sumarno",role:"Member",pembayaran:{} },
-  { nama:"Arif Yoga Fitrianto",role:"Tuan",pembayaran:{} },
+  { nama:"Arif Yoga Fitrianto",role:"Member",pembayaran:{} },
   { nama:"Arjuna Zaidan Zidna Fann",role:"Member",pembayaran:{} },
   { nama:"Ayesha Fadhlulhaq Janna",role:"Member",pembayaran:{} },
   { nama:"Azhril Rasya Putra",role:"Member",pembayaran:{} },
@@ -327,7 +340,7 @@ const siswa=[
   { nama:"Fahmi Pasha",role:"Member",pembayaran:{} },
   { nama:"Fajar Khairil Darajat",role:"Member",pembayaran:{} },
   { nama:"Febryan Rozaq Saputra",role:"Developer",pembayaran:{} },
-  { nama:"Felicia Valentina Ayudinda",role:"Nona",pembayaran:{} },
+  { nama:"Felicia Valentina Ayudinda",role:"Member",pembayaran:{} },
   { nama:"Marcelino",role:"Member",pembayaran:{} },
   { nama:"Muhamad Aqil Hidayatulloh",role:"Member",pembayaran:{} },
   { nama:"Muhamad Dzaki Kusuma Al Amin",role:"Member",pembayaran:{} },
@@ -352,6 +365,9 @@ for(let i=1;i<=totalMinggu;i++){
 }
 
 function getBadge(role){
+  if(role==="CEO")return'<span class="badge">👑 CEO</span>';
+  if(role==="Tuan")return'<span class="badge">💧 Tuan Muda</span>';
+  if(role==="Nona")return'<span class="badge">🌸 Nona Muda</span>';
   if(role==="Developer")return'<span class="badge">👁 Developer</span>';
   return'<span class="badge">🍃</span>';
 }
@@ -371,28 +387,20 @@ siswa.forEach(s=>{
   tableBody.innerHTML+=row;
 });
 
-/* Background by device time */
+/* Background */
 
 function setBackgroundByTime(){
   const hour=new Date().getHours();
   const body=document.body;
-
   body.classList.remove("bg-pagi","bg-siang","bg-malam");
 
-  if(hour>=6 && hour<12){
-    body.classList.add("bg-pagi");
-  }
-  else if(hour>=12 && hour<18){
-    body.classList.add("bg-siang");
-  }
-  else{
-    body.classList.add("bg-malam");
-  }
+  if(hour>=6 && hour<12) body.classList.add("bg-pagi");
+  else if(hour>=12 && hour<18) body.classList.add("bg-siang");
+  else body.classList.add("bg-malam");
 }
-
 setBackgroundByTime();
 
-/* Sky control */
+/* Sky */
 
 const sun=document.querySelector(".sun");
 const moon=document.querySelector(".moon");
@@ -400,7 +408,6 @@ const starsContainer=document.querySelector(".stars");
 
 function updateSky(){
   const hour=new Date().getHours();
-
   if(hour>=6 && hour<18){
     sun.style.opacity=1;
     moon.style.opacity=0;
@@ -411,6 +418,7 @@ function updateSky(){
     createStars();
   }
 }
+updateSky();
 
 function createStars(){
   starsContainer.innerHTML="";
@@ -435,12 +443,8 @@ function shootingStar(){
 
 setInterval(()=>{
   const hour=new Date().getHours();
-  if(hour>=18 || hour<6){
-    shootingStar();
-  }
+  if(hour>=18 || hour<6) shootingStar();
 },5000);
-
-updateSky();
 
 /* Developer Fire */
 
@@ -458,7 +462,6 @@ function createFire(){
     },700);
   });
 }
-
 createFire();
 
 </script>
