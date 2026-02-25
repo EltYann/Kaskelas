@@ -7,7 +7,24 @@
 body{
   font-family:Arial;
   padding:20px;
-  background:#f4f6f9;
+  transition: background 1s ease;
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+
+/* ================= BACKGROUND MODE ================= */
+
+.bg-pagi{
+  background:linear-gradient(to top,#a8e063,#56ab2f);
+}
+
+.bg-siang{
+  background:linear-gradient(to top,#2193b0,#6dd5ed);
+}
+
+.bg-malam{
+  background:linear-gradient(to top,#0f2027,#203a43,#2c5364);
 }
 
 h1{
@@ -41,6 +58,101 @@ th{
   text-align:left;
   font-weight:bold;
   min-width:220px;
+}
+
+/* ================= SKY ================= */
+
+.sky{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:-1;
+}
+
+.sun{
+  position:absolute;
+  width:120px;
+  height:120px;
+  background:radial-gradient(circle,#ffd700,#ff8c00);
+  border-radius:50%;
+  top:60%;
+  left:-150px;
+  opacity:0;
+  box-shadow:0 0 50px #ffae00;
+  animation:sunMove 20s linear infinite;
+}
+
+@keyframes sunMove{
+  0%{ left:-150px; top:70%; }
+  50%{ top:20%; }
+  100%{ left:110%; top:70%; }
+}
+
+.moon{
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:radial-gradient(circle,#fff,#ccc);
+  border-radius:50%;
+  top:60%;
+  left:-120px;
+  opacity:0;
+  box-shadow:0 0 25px #ffffff;
+  animation:moonMove 25s linear infinite;
+}
+
+@keyframes moonMove{
+  0%{ left:-120px; top:75%; }
+  50%{ top:25%; }
+  100%{ left:110%; top:75%; }
+}
+
+.stars{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:1;}
+}
+
+.shooting{
+  position:absolute;
+  width:2px;
+  height:80px;
+  background:linear-gradient(white,transparent);
+  transform:rotate(45deg);
+  animation:shoot 1s linear forwards;
+}
+
+@keyframes shoot{
+  from{transform:translate(0,0) rotate(45deg); opacity:1;}
+  to{transform:translate(300px,300px) rotate(45deg); opacity:0;}
+}
+
+.fog{
+  position:absolute;
+  bottom:0;
+  width:200%;
+  height:200px;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.2),transparent 70%);
+  animation:fogMove 40s linear infinite;
+}
+
+@keyframes fogMove{
+  from{transform:translateX(-25%);}
+  to{transform:translateX(0%);}
 }
 
 /* ================= CEO ================= */
@@ -126,8 +238,6 @@ th{
   100%{transform:translateX(15px);}
 }
 
-/* ================= BARA API HALUS ================= */
-
 .spark{
   position:absolute;
   bottom:5px;
@@ -144,29 +254,12 @@ th{
   }
 }
 
-/* ================= NAMA KHUSUS ================= */
-
 .nama.special{
   padding:6px 12px;
   border-radius:12px;
   display:inline-block;
   animation:blinkSoft 2s infinite alternate;
   color:white;
-}
-
-.CEO .nama.special{
-  border:2px solid #ffd700;
-  text-shadow:0 0 6px #ffd700,0 0 12px #ffcc00,0 0 18px #ffaa00;
-}
-
-.Tuan .nama.special{
-  border:2px solid #6ec6ff;
-  text-shadow:0 0 6px #00cfff,0 0 12px #00aaff,0 0 18px #0088ff;
-}
-
-.Nona .nama.special{
-  border:2px solid #ff9ecf;
-  text-shadow:0 0 6px #ff69b4,0 0 12px #ff85c1,0 0 18px #ffb6d9;
 }
 
 .Developer .nama.special{
@@ -191,6 +284,13 @@ th{
 </style>
 </head>
 <body>
+
+<div class="sky">
+  <div class="sun"></div>
+  <div class="moon"></div>
+  <div class="stars"></div>
+  <div class="fog"></div>
+</div>
 
 <h1>💰 Data Uang Kas Kelas</h1>
 
@@ -252,9 +352,6 @@ for(let i=1;i<=totalMinggu;i++){
 }
 
 function getBadge(role){
-  if(role==="CEO")return'<span class="badge">👑 CEO</span>';
-  if(role==="Tuan")return'<span class="badge">💧 Tuan Muda</span>';
-  if(role==="Nona")return'<span class="badge">🌸 Nona Muda</span>';
   if(role==="Developer")return'<span class="badge">👁 Developer</span>';
   return'<span class="badge">🍃</span>';
 }
@@ -274,7 +371,78 @@ siswa.forEach(s=>{
   tableBody.innerHTML+=row;
 });
 
-/* FIRE BARA HALUS */
+/* Background by device time */
+
+function setBackgroundByTime(){
+  const hour=new Date().getHours();
+  const body=document.body;
+
+  body.classList.remove("bg-pagi","bg-siang","bg-malam");
+
+  if(hour>=6 && hour<12){
+    body.classList.add("bg-pagi");
+  }
+  else if(hour>=12 && hour<18){
+    body.classList.add("bg-siang");
+  }
+  else{
+    body.classList.add("bg-malam");
+  }
+}
+
+setBackgroundByTime();
+
+/* Sky control */
+
+const sun=document.querySelector(".sun");
+const moon=document.querySelector(".moon");
+const starsContainer=document.querySelector(".stars");
+
+function updateSky(){
+  const hour=new Date().getHours();
+
+  if(hour>=6 && hour<18){
+    sun.style.opacity=1;
+    moon.style.opacity=0;
+    starsContainer.innerHTML="";
+  }else{
+    sun.style.opacity=0;
+    moon.style.opacity=1;
+    createStars();
+  }
+}
+
+function createStars(){
+  starsContainer.innerHTML="";
+  for(let i=0;i<80;i++){
+    const star=document.createElement("div");
+    star.classList.add("star");
+    star.style.top=Math.random()*100+"%";
+    star.style.left=Math.random()*100+"%";
+    star.style.animationDuration=(1+Math.random()*2)+"s";
+    starsContainer.appendChild(star);
+  }
+}
+
+function shootingStar(){
+  const star=document.createElement("div");
+  star.classList.add("shooting");
+  star.style.top=Math.random()*50+"%";
+  star.style.left=Math.random()*50+"%";
+  starsContainer.appendChild(star);
+  setTimeout(()=>star.remove(),1000);
+}
+
+setInterval(()=>{
+  const hour=new Date().getHours();
+  if(hour>=18 || hour<6){
+    shootingStar();
+  }
+},5000);
+
+updateSky();
+
+/* Developer Fire */
 
 function createFire(){
   document.querySelectorAll(".Developer td").forEach(cell=>{
